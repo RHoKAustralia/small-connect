@@ -58,7 +58,7 @@ var app = new Vue({
     results: RESULTS,
     show_i_want: false,
     defining_search: true,
-    map: {},
+    map: false,
     location: {
       lat: -33.8651053,
       lng: 151.2092549
@@ -87,6 +87,7 @@ var app = new Vue({
       this.defining_search = true;
     },
     addResults: function(results) {
+      this.results = results;
       map = this.loadMap();
       results.forEach(function(result) {
         var marker = new google.maps.Marker({
@@ -108,10 +109,13 @@ var app = new Vue({
       });
     },
     loadMap: function() {
-      return new google.maps.Map(document.getElementById('map'), {
-        center: this.location,
-        zoom: 12
-      });
+      if(!this.map) {
+        this.map = new google.maps.Map(document.getElementById('map'), {
+          center: this.location,
+          zoom: 12
+        });
+      }
+      return this.map;
     }
   },
   events: {
