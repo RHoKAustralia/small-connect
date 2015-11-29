@@ -1,0 +1,61 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "transitions";
+
+[v-cloak] {
+  display: none;
+}
+
+#questionaire {
+  #header {
+    @extend .text-center;
+    @extend .jumbotron;
+    background-color: #8DCDC1;
+    p {
+      display: inline-block;
+      vertical-align: middle;
+      float: none;
+    }
+    .options {
+      @extend .btn-group-vertical;
+      padding: 0em 0em 0em 1em ;
+      .option {
+        @extend .btn;
+        @extend .btn-default;
+      }
+    }
+    .repeat {
+      @extend .glyphicon;
+      @extend .glyphicon-repeat;
+      margin-left: 1em;
+      color: #FFF5C3;
+      font-weight: bold;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+#results {
+  @extend .row;
+}
+
+#map {
+  @extend .col-md-6;
+  height: 400px;
+}
+
+#results-list {
+  @extend .col-md-6;
+  list-style-type: none;
+  .distance {
+    @extend .badge;
+    background-color: #EB6E44;
+  }
+  .keywords {
+    li {
+      @extend .badge;
+    }
+  }
+}

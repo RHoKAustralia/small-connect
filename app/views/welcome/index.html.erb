@@ -1,0 +1,43 @@
+<div id="questionaire">
+  <div id="header" v-cloak>
+    <h1 v-if="defining_search" transition="rollup">How are you today?</h1>
+    <p id="i-am">
+      I am
+      <ul class="options">
+        <button v-for="option in iam"
+                v-on:click="select_i_am($index)"
+                transition="rollup" stagger="100"
+                type="button"
+                class="option">
+          {{option}}
+        </button>
+      </ul>
+    </p>
+    <p v-if="show_i_want" id="i-want" transition="rollup">
+      and I want
+      <ul class="options" v-if="show_i_want">
+        <button v-for="option in iwant"
+                v-on:click="select_i_want($index)"
+                transition="rollup" stagger
+                type="button"
+                class="option">{{option}}</button>
+      </ul>
+    </p>
+    <h1 v-if="!defining_search" transition="rollup">This may help:</h1>
+  </div>
+  <div class="content" v-show="!defining_search" transition="reveal">
+    <div id="results" class="row">
+      <div id="map"></div>
+      <ul id="results-list">
+        <li v-for="result in results">
+          <span class="distance">{{result.distance}}</span>
+          <a href="#">{{result.name}}</a>
+          <ul class="keywords">
+            <li v-for="keyword in result.keywords">{{keyword}}</li>
+          </ul>
+          <p>{{result.description}}</p>
+        </li>
+      </li>
+    </div>
+  </div>
+</div>

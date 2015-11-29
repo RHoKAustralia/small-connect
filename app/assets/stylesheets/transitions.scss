@@ -1,0 +1,41 @@
+.rollup-transition {
+  transition: all .5s ease;
+  overflow: hidden;
+}
+
+.rollup-enter, .rollup-leave {
+  height: 0px;
+  opacity: 0;
+}
+.reveal-transition {
+  transition: all .5s ease;
+  overflow: hidden;
+}
+
+.reveal-enter, .reveal-leave {
+  height: 0px;
+  opacity: 0;
+}
+
+.scale-enter {
+  animation: scale-in .5s;
+}
+.scale-leave {
+  animation: scale-out .5s;
+}
+@keyframes scale-in {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes scale-out {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
