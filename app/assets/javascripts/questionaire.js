@@ -11,24 +11,30 @@ var RESULTS = [
     name: "Aboriginal Child Family & Community Care State Secretariat (NSW)Inc",
     keywords: ["Advocacy", "Disability"],
     description: "This is a placemarker for the descrition.",
-    lat: -33.916932,
-    lng: 151.1550813
+    location: {
+      lat: -33.916932,
+      lng: 151.1550813
+    }
   },
   {
-    distance: "2.2 km",
+    distance: "1.3 km",
     name: "Aboriginal Disability Network Incorporated",
     keywords: ["Information", "Disability"],
     description: "This is a placemarker for the descrition.",
-    lat: -33.892373,
-    lng: 151.1975543
+    location: {
+      lat: -33.892373,
+      lng: 151.1975543
+    }
   },
   {
-    distance: "3.2 km",
+    distance: "4.5 km",
     name: "Aftercare",
     keywords: ["Counselling,", "Community Network"],
     description: "This is a placemarker for the descrition.",
-    lat: -33.8702774,
-    lng: 151.154553
+    location: {
+      lat: -33.8702774,
+      lng: 151.154553
+    }
   }
 ]
 
@@ -41,9 +47,7 @@ window.initMap = function() {
     console.log('fired message');
 };
 document.write(
-  "<script src=\"" + GOOGLE_MAPS_API_URL
-  + GOOGLE_MAPS_CALLBACK
-  +"\" async defer></script>"
+  "<script src=\"" + GOOGLE_MAPS_API_URL + "\" async defer></script>"
 );
 
 var app = new Vue({
@@ -56,8 +60,8 @@ var app = new Vue({
     defining_search: true,
     map: {},
     location: {
-      lng: '',
-      lat: ''
+      lat: -33.8651053,
+      lng: 151.2092549
     }
   },
   methods: {
@@ -75,20 +79,18 @@ var app = new Vue({
       choice = this.iwant[i];
       this.iwant = [choice];
       this.defining_search = false;
-      this.addMarkers(RESULTS)
+      this.addResults(RESULTS)
     },
     restart: function() {
       this.iam = IAM_OPTIONS;
       this.show_i_want = false;
       this.defining_search = true;
     },
-    addMarkers: function(results) {
+    addResults: function(results) {
+      map = this.loadMap();
       results.forEach(function(result) {
         var marker = new google.maps.Marker({
-          position: {
-            lat: result.lat,
-            lng: result.lng
-          },
+          position: result.location,
           map: this.map,
           label: result.name
         });
@@ -104,17 +106,17 @@ var app = new Vue({
           infowindow.open(this.map, marker);
         });
       });
+    },
+    loadMap: function() {
+      return new google.maps.Map(document.getElementById('map'), {
+        center: this.location,
+        zoom: 12
+      });
     }
   },
   events: {
     'google.maps:init': function() {
-      this.map = new google.maps.Map(document.getElementById('map'), {
-        center: {
-          lat: -33.8651053,
-          lng: 151.2092549
-        },
-        zoom: 12
-      });
+
     }
   }
 });

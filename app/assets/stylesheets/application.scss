@@ -44,10 +44,12 @@
 #map {
   @extend .col-md-6;
   height: 400px;
+  margin-bottom: 10px;
 }
 
 #results-list {
   @extend .col-md-6;
+  margin-left: 20px;
   list-style-type: none;
   .distance {
     @extend .badge;
