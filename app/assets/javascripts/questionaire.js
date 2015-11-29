@@ -91,13 +91,11 @@ var app = new Vue({
           label: result.name
         });
 
-        // preparing infowindow
         var infowindow = new google.maps.InfoWindow({
           content: '<h4>' + result.name + '</h4>' +
-                    '<info></info>'
+                  '<info>' + result.description + '</info>'
         });
 
-        // adding listener, so infowindow is opened
         marker.addListener('click', function(event) {
           infowindow.open(this.map, marker);
         });
