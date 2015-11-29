@@ -31,7 +31,7 @@
       <ul id="results-list">
         <li v-for="result in results">
           <span class="distance">{{result.distance}}</span>
-          <a href="#">{{result.name}}</a>
+          <a href="#" v-on:click="panToMarker($index)">{{result.name}}</a>
           <ul class="keywords">
             <li v-for="keyword in result.keywords">{{keyword}}</li>
           </ul>

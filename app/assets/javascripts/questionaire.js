@@ -10,7 +10,7 @@ var RESULTS = [
     distance: "1.2 km",
     name: "Aboriginal Child Family & Community Care State Secretariat (NSW)Inc",
     keywords: ["Advocacy", "Disability"],
-    description: "This is a placemarker for the descrition.",
+    description: "Provides free advocacy and disability support.",
     location: {
       lat: -33.916932,
       lng: 151.1550813
@@ -20,7 +20,7 @@ var RESULTS = [
     distance: "1.3 km",
     name: "Aboriginal Disability Network Incorporated",
     keywords: ["Information", "Disability"],
-    description: "This is a placemarker for the descrition.",
+    description: "Provides information and disability support.",
     location: {
       lat: -33.892373,
       lng: 151.1975543
@@ -30,7 +30,7 @@ var RESULTS = [
     distance: "4.5 km",
     name: "Aftercare",
     keywords: ["Counselling,", "Community Network"],
-    description: "This is a placemarker for the descrition.",
+    description: "Free councelling services for young people in the community.",
     location: {
       lat: -33.8702774,
       lng: 151.154553
@@ -39,13 +39,8 @@ var RESULTS = [
 ]
 
 var GOOGLE_MAPS_KEY = "?key=AIzaSyDYJnoMS16NR-wHbs5ZWywv5Tdg8TdNamA";
-var GOOGLE_MAPS_CALLBACK = "&callback=initMap";
-var GOOGLE_MAPS_API_URL = "https://maps.googleapis.com/maps/api/js" + GOOGLE_MAPS_KEY + GOOGLE_MAPS_CALLBACK;
+var GOOGLE_MAPS_API_URL = "https://maps.googleapis.com/maps/api/js" + GOOGLE_MAPS_KEY;
 
-window.initMap = function() {
-    app.$emit('google.maps:init');
-    console.log('fired message');
-};
 document.write(
   "<script src=\"" + GOOGLE_MAPS_API_URL + "\" async defer></script>"
 );
@@ -116,11 +111,12 @@ var app = new Vue({
         });
       }
       return this.map;
-    }
-  },
-  events: {
-    'google.maps:init': function() {
+    },
+    panToMarker: function(i) {
+      var map = this.loadMap();
+      var result = this.results[i];
 
+      map.panTo(result.location);
     }
   }
 });
