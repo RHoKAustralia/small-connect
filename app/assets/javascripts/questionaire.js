@@ -1,6 +1,6 @@
-var IAM_OPTIONS = ["Helpless", "Ok", "Lonely", "Happy"]
+var IAM_OPTIONS = ["Sad", "Ok", "Lonely", "Happy"]
 var IAM_IWANT_OPTIONS = {
-  "Helpless": ["Food", "Warmth"],
+  "Sad": ["Food", "Warmth"],
   "Ok": ["Education", "Advocacy"],
   "Lonely": ["Support", "to Talk"],
   "Happy": ["Activities", "Information"]
